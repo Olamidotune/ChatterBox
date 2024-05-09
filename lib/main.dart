@@ -1,5 +1,6 @@
 import 'package:chatterbox/config/colors.dart';
 import 'package:chatterbox/presentations/screens/auth/sign_in.dart';
+import 'package:chatterbox/presentations/screens/auth/sign_up.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -49,6 +50,10 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: Colors.black,
             ),
       home: const SignInScreen(),
+      routes: {
+        SignInScreen.routeName:(context) => SignInScreen(),
+        SignUpScreen.routeName:(context) => SignUpScreen()
+      },
     );
   }
 }
