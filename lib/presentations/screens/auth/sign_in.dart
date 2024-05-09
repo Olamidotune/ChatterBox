@@ -3,6 +3,7 @@ import 'package:chatterbox/config/colors.dart';
 import 'package:chatterbox/config/styles.dart';
 import 'package:chatterbox/config/text_styles.dart';
 import 'package:chatterbox/presentations/screens/auth/sign_up.dart';
+import 'package:chatterbox/presentations/screens/home/home.dart';
 import 'package:chatterbox/presentations/widgets/button.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -41,10 +42,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     colors: [THEME, THEME_2],
                   ),
                   borderRadius: BorderRadius.only(
-                    bottomLeft:
-                        Radius.elliptical(MediaQuery.of(context).size.width, 150),
-                    bottomRight:
-                        Radius.elliptical(MediaQuery.of(context).size.width, 150),
+                    bottomLeft: Radius.elliptical(
+                        MediaQuery.of(context).size.width, 150),
+                    bottomRight: Radius.elliptical(
+                        MediaQuery.of(context).size.width, 150),
                   ),
                 ),
               ),
@@ -64,16 +65,19 @@ class _SignInScreenState extends State<SignInScreen> {
                         style: heading(),
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: Material(
                         shadowColor: THEME,
                         elevation: 20,
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
                           height: MediaQuery.of(context).size.height / 2.3,
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
@@ -200,7 +204,12 @@ class _SignInScreenState extends State<SignInScreen> {
                                 SizedBox(
                                   height: 50,
                                 ),
-                                Button(busy: _busy, "Sign in"),
+                                Button(
+                                  busy: _busy,
+                                  "Sign in",
+                                  onPressed: () => Navigator.of(context)
+                                      .popAndPushNamed(HomeScreen.routeName),
+                                ),
                               ],
                             ),
                           ),
