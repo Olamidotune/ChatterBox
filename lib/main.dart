@@ -3,9 +3,12 @@ import 'package:chatterbox/presentations/screens/auth/sign_in.dart';
 import 'package:chatterbox/presentations/screens/auth/sign_up.dart';
 import 'package:chatterbox/presentations/screens/chat/chat_screen.dart';
 import 'package:chatterbox/presentations/screens/home/home.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

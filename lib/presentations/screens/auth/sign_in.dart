@@ -85,132 +85,135 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           child: Form(
                             key: _formKey,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                ),
-                                TextFormField(
-                                  controller: _emailController,
-                                  textInputAction: TextInputAction.next,
-                                  validator: (value) {
-                                    if (EmailValidator.validate(
-                                        value?.trim() ?? "")) {
+                            child: SingleChildScrollView(
+                              physics: BouncingScrollPhysics(),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 50,
+                                  ),
+                                  TextFormField(
+                                    controller: _emailController,
+                                    textInputAction: TextInputAction.next,
+                                    validator: (value) {
+                                      if (EmailValidator.validate(
+                                          value?.trim() ?? "")) {
+                                        return null;
+                                      }
+                                      return "Please provide a valid email address";
+                                    },
+                                    autofillHints: [AutofillHints.email],
+                                    style: TextStyle(
+                                        color: ColorGate(
+                                      context: context,
+                                    ).color),
+                                    decoration: InputDecoration(
+                                      labelText: "Email",
+                                      labelStyle: titleTextStyle.copyWith(
+                                          color: ColorGate(
+                                        context: context,
+                                        defaultColor: THEME,
+                                      ).color),
+                                      hintText: "Enter your email",
+                                      hintStyle: TextStyle(color: GREY),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                        borderSide: BorderSide(
+                                            color: ColorGate(
+                                          context: context,
+                                          defaultColor: THEME,
+                                        ).color!),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  TextFormField(
+                                    controller: _passwordController,
+                                    textInputAction: TextInputAction.go,
+                                    focusNode: _passwordFocusNode,
+                                    onFieldSubmitted: (value) {},
+                                    obscureText: _obscurePassword,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Please provide a password.";
+                                      }
                                       return null;
-                                    }
-                                    return "Please provide a valid email address";
-                                  },
-                                  autofillHints: [AutofillHints.email],
-                                  style: TextStyle(
-                                      color: ColorGate(
-                                    context: context,
-                                  ).color),
-                                  decoration: InputDecoration(
-                                    labelText: "Email",
-                                    labelStyle: titleTextStyle.copyWith(
+                                    },
+                                    style: TextStyle(
                                         color: ColorGate(
                                       context: context,
-                                      defaultColor: THEME,
                                     ).color),
-                                    hintText: "Enter your email",
-                                    hintStyle: TextStyle(color: GREY),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                      borderSide: BorderSide(
+                                    autofillHints: [AutofillHints.password],
+                                    decoration: InputDecoration(
+                                      labelText: "Password",
+                                      labelStyle: titleTextStyle.copyWith(
                                           color: ColorGate(
                                         context: context,
                                         defaultColor: THEME,
-                                      ).color!),
+                                      ).color),
+                                      hintText: "Enter Password",
+                                      hintStyle: TextStyle(color: GREY),
+                                      suffix: GestureDetector(
+                                        onTap: () => setState(() =>
+                                            _obscurePassword = !_obscurePassword),
+                                        child: Icon(
+                                          _obscurePassword
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: GREY,
+                                          size: 17,
+                                        ),
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                        borderSide: BorderSide(
+                                            color: ColorGate(
+                                          context: context,
+                                          defaultColor: THEME,
+                                        ).color!),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                TextFormField(
-                                  controller: _passwordController,
-                                  textInputAction: TextInputAction.go,
-                                  focusNode: _passwordFocusNode,
-                                  onFieldSubmitted: (value) {},
-                                  obscureText: _obscurePassword,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return "Please provide a password.";
-                                    }
-                                    return null;
-                                  },
-                                  style: TextStyle(
-                                      color: ColorGate(
-                                    context: context,
-                                  ).color),
-                                  autofillHints: [AutofillHints.password],
-                                  decoration: InputDecoration(
-                                    labelText: "Password",
-                                    labelStyle: titleTextStyle.copyWith(
-                                        color: ColorGate(
-                                      context: context,
-                                      defaultColor: THEME,
-                                    ).color),
-                                    hintText: "Enter Password",
-                                    hintStyle: TextStyle(color: GREY),
-                                    suffix: GestureDetector(
-                                      onTap: () => setState(() =>
-                                          _obscurePassword = !_obscurePassword),
-                                      child: Icon(
-                                        _obscurePassword
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: GREY,
-                                        size: 17,
-                                      ),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                      borderSide: BorderSide(
-                                          color: ColorGate(
-                                        context: context,
-                                        defaultColor: THEME,
-                                      ).color!),
-                                    ),
+                                  SizedBox(
+                                    height: 10,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                GestureDetector(
-                                    onTap: () {},
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        "Forgot password?",
-                                        style: normalText().copyWith(
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    )),
-                                SizedBox(
-                                  height: 50,
-                                ),
-                                Button(
-                                  busy: _busy,
-                                  "Sign in",
-                                  onPressed: () => Navigator.of(context)
-                                      .popAndPushNamed(HomeScreen.routeName),
-                                ),
-                              ],
+                                  GestureDetector(
+                                      onTap: () {},
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          "Forgot password?",
+                                          style: normalText().copyWith(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      )),
+                                  SizedBox(
+                                    height: 50,
+                                  ),
+                                  Button(
+                                    busy: _busy,
+                                    "Sign in",
+                                    onPressed: () => Navigator.of(context)
+                                        .popAndPushNamed(HomeScreen.routeName),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
