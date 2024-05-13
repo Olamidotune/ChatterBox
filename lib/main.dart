@@ -4,11 +4,19 @@ import 'package:chatterbox/presentations/screens/auth/sign_up.dart';
 import 'package:chatterbox/presentations/screens/chat/chat_screen.dart';
 import 'package:chatterbox/presentations/screens/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  if (kIsWeb) {
+    // run app for web
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  } else {
+    // run app for Android and iOS
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  }
   runApp(const MyApp());
 }
 

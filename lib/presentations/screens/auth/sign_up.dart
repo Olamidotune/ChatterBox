@@ -27,6 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final FocusNode _passwordFocusNode2 = FocusNode();
   String email = '';
   String password = '';
+  String name = '';
   bool _obscurePassword = true;
 
   final bool _busy = false;
