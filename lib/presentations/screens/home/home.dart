@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         child: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
